@@ -100,6 +100,41 @@ function getNextDate(date){
     };
 
 }
+function getPreviousDate(date){
+    var day = date.day - 1;
+    var month = date.month;
+    var year = date.year;
+    
+    var daysInMonth =[31,28,31,30,31,30,31,31,30,31,30,31];
+
+    
+    if (day === 0) {
+        month--;
+    
+        if (month === 0) {
+          month = 12;
+          day = 31;
+          year--;
+        }
+        else if (month === 2) {
+          if (isLeapYear(year)) {
+            day = 29;
+          }
+          else {
+            day = 28;
+          }
+        }
+        else {
+          day = daysInMonth[month - 1];
+        }
+      }
+    
+    return{
+        day : day,
+        month: month,
+        year : year
+    }
+}
 
 function getNextPalindromeDate(date){
     var ctr = 0;
@@ -110,9 +145,23 @@ function getNextPalindromeDate(date){
         if(isPalindrome){
             break;
         }
-        var nextDate = getNextDate(nextdate);
+        nextDate = getNextDate(nextDate);
     }
     return [ctr, nextDate];
+}
+function getPreviousPalindromeDate(date){
+    var count = 0;
+    var previousDate = getPreviousDate(date);
+    while(1){
+        count++;
+        var isPalindrome = checkPalindromeForAllDateFormats(previousDate);
+        if(isPalindrome){
+            break;
+        }
+         previousDate = getPreviousDate(previousDate);
+    }
+    return [count, previousDate];
+
 }
 
 var bdayInput = document.querySelector("#bday-input");
@@ -120,6 +169,9 @@ var showBtn = document.querySelector("#show-btn");
 var result = document.querySelector("#output");
 
 function clickHandler(e){
+    if(bdayInput.value===""){
+        result.innerText="Please select your birthdate.";
+    }
     var bdayStr = bdayInput.value;
     if(bdayStr !==''){
         var listOfDate = bdayStr.split('-');
@@ -131,11 +183,16 @@ function clickHandler(e){
         };
         var isPalindrome = checkPalindromeForAllDateFormats(date);
         if(isPalindrome){
-            result.innerText= "Yay! your birthday is a palindrome🥳";
+            result.innerText= "Yay!!! Your birthday is a palindrome🥳";
         }
-        else{
-            var [ctr, nextDate] = getNextPalindromeDate(date);
-            result.innerText = `The next palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed it by ${ctr} days! 😔`;
+        else if(!isPalindrome){    
+            const [count, previousDate] = getPreviousPalindromeDate(date);
+            const [ctr, nextDate] = getNextPalindromeDate(date);
+            if(ctr < count){
+            result.innerText = `Oops! Your birthday is NOT a palindrome. The nearest palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year} and you missed it by ${ctr} days!🙁`;
+            }else{
+            result.innerText=`Oops! Your birthday is NOT a palindrome. The nearest palindrome is ${previousDate.day}-${previousDate.month}-${previousDate.year} and you missed it by ${count} days!🙁`
+            }
         }
     }
 }
