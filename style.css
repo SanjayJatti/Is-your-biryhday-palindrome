@@ -43,14 +43,14 @@ body{
     margin: auto;
     padding-left: 1rem;
     padding-right: 1rem;
-    max-width: 600px;
+    max-width: 800px;
     margin-bottom: 1rem;
 }
 .hero {
     display: block;
 }
 .hero img {
-    max-width: 350px;
+    max-width:50%;
     margin: auto;
     display: block;
     border-radius: 1rem;
@@ -71,6 +71,7 @@ button{
 }
 #output{
     margin-top:1rem ;
+    margin-bottom: 2rem;
     font-size: 1.2rem;
     font-weight: bold;
     color:white;
