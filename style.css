@@ -10,7 +10,7 @@
 }
 .navigation h1{
     font-family: 'Righteous', cursive;
-    background-color:#fca311;
+    background-color:rgba(238,117,9,1);
     padding: 2rem;
     border-bottom-left-radius: 1rem;
     color: white;
@@ -62,11 +62,11 @@ button{
     font-size: 1rem;
     border-radius: 0.3rem;
     border-width:medium;
-    border-color:#fca311;
+    border-color:rgba(238,117,9,1);
     margin-bottom: 0.8rem ;
     margin: auto;
     font-weight: bold;
-    color: #fca311;
+    color: rgba(238,117,9,1);
 }
 #output{
     margin-top:1rem ;
@@ -74,4 +74,33 @@ button{
     font-size: 1.2rem;
     font-weight: bold;
     color:white;
+}
+.footer {
+    font-family: 'Righteous', cursive;
+    background-color:rgba(238,117,9,1);
+    color: white;
+    padding: 2rem 0rem;
+    border-top-right-radius: 1rem;
+    text-align: center;
+    margin-top: 3rem;
+}
+.footer .heading {
+    font-size: larger;
+    padding-bottom: 1rem;
+  
+}
+
+.footer ul {
+    padding-inline-start: 0px;
+    list-style: none;
+} 
+.list-inline li {
+    display: inline;
+    padding: 0rem 0.5rem;
+}
+.link {
+    box-sizing: border-box;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    color: white;
 }
